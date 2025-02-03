@@ -47,20 +47,24 @@ import { TypedEventTarget } from "@hydroper/typedeventtarget";
  * * `navigateRight` — Used for focusing the right neighbor of an user interface control.
  * * `navigateUp` — Used for focusing the top neighbor of an user interface control.
  * * `navigateDown` — Used for focusing the bottom neighbor of an user interface control.
+ * 
+ * # Events
+ * 
+ * This class extends `EventTarget` and may dispatch the following events:
+ * 
+ * ```ts
+ * // Dispatched when user input starts being pressed or
+ * // is continuously pressed.
+ * inputPressed: Event;
+ * // Dispatched when any user input is released.
+ * inputReleased: Event;
+ * // Dispatched when the actions map is updated.
+ * actionsUpdated: Event;
+ * ```
  */
 export default class Input extends (EventTarget as TypedEventTarget<{
-    /**
-     * Dispatched when user input starts being pressed or
-     * is continuously pressed.
-     */
     inputPressed: Event;
-    /**
-     * Dispatched when any user input is released.
-     */
     inputReleased: Event;
-    /**
-     * Dispatched when the actions map is updated.
-     */
     actionsUpdated: Event;
 }>) {
     /**

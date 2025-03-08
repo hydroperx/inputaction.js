@@ -43,6 +43,7 @@ import { TypedEventTarget } from "@hydroper/typedeventtarget";
  * The following actions are pre-defined in every action map
  * and can be overriden:
  * 
+ * * `escape` - Used for escaping out in the user interface.
  * * `navigateLeft` — Used for focusing the left neighbor of an user interface control.
  * * `navigateRight` — Used for focusing the right neighbor of an user interface control.
  * * `navigateUp` — Used for focusing the top neighbor of an user interface control.
@@ -101,6 +102,7 @@ export default class Input extends (EventTarget as TypedEventTarget<{
 
     private static builtin(): Record<string, InputActionAtom[]> {
         return {
+            "escape": [ { key: "escape" } ],
             "navigateLeft": [ { key: "leftArrow" } ],
             "navigateRight": [ { key: "rightArrow" } ],
             "navigateUp": [ { key: "upArrow" } ],

@@ -40,6 +40,7 @@ Input.input.setActions({
 });
 
 Input.input.addEventListener("inputPressed", () => {
-    const shouldMoveRight = Input.input.isPressed("moveRight");
+    // use isPressed() or justPressed()
+    const shouldMoveRight = Input.input.justPressed("moveRight");
 });
 ```

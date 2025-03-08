@@ -122,6 +122,7 @@ export default class Input extends (EventTarget as TypedEventTarget<{
                 if (state === undefined) {
                     state = {
                         pressed: false,
+                        pressedTimestamp: 0,
                         control: false,
                         shift: false,
                         alt: false,
@@ -129,6 +130,7 @@ export default class Input extends (EventTarget as TypedEventTarget<{
                     Input.mPressedStatePoolKeys.set(keyName, state);
                 }
                 state.pressed = true;
+                state.pressedTimestamp = Date.now();
                 state.control = evt.ctrlKey;
                 state.shift = evt.shiftKey;
                 state.alt = evt.altKey;
@@ -146,6 +148,7 @@ export default class Input extends (EventTarget as TypedEventTarget<{
                 if (state === undefined) {
                     state = {
                         pressed: false,
+                        pressedTimestamp: 0,
                         control: false,
                         shift: false,
                         alt: false,
@@ -185,10 +188,34 @@ export default class Input extends (EventTarget as TypedEventTarget<{
         }
         return false;
     }
+
+    /**
+     * Determines whether an action has been just pressed right now.
+     * @throws Error Thrown if the action does not exist.
+     */
+    public justPressed(name: string): boolean {
+        const action = this.mMap[name];
+        assert(action !== undefined, "The specified action for Input.isPressed(name) does not exist.");
+        for (const item of action!) {
+            if (item.hasOwnProperty("key")) {
+                const inputActionKey = item as InputActionKey;
+                const pressedState = Input.mPressedStatePoolKeys.get(inputActionKey.key);
+                const pressed = pressedState !== undefined && pressedState.pressed
+                    && (inputActionKey.control ? pressedState.control : !pressedState.control)
+                    && (inputActionKey.shift ? pressedState.shift : !pressedState.shift)
+                    && (inputActionKey.alt ? pressedState.alt : !pressedState.alt);
+                if (pressed && pressedState.pressedTimestamp > Date.now() - 15) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
 
 type PressedState = {
     pressed: boolean,
+    pressedTimestamp: number,
     control: boolean,
     shift: boolean,
     alt: boolean,

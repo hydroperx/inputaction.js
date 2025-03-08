@@ -1,6 +1,6 @@
 import clonePlainObject from "./util/clonePlainObject";
 import { InputActionAtom, InputActionKey, InputActionKeyName, navigatorKeyToThis } from "./InputAction";
-import * as assert from "assert";
+import assert from "assert";
 import { TypedEventTarget } from "@hydroper/typedeventtarget";
 
 /**

@@ -114,56 +114,71 @@ export default class Input extends (EventTarget as TypedEventTarget<{
     private static readonly mPressedStatePoolKeys: Map<InputActionKeyName, PressedState> = new Map();
 
     static {
-        window.addEventListener("keydown", evt => {
-            const keyName = navigatorKeyToThis(evt.key);
-            if (keyName !== undefined) {
-                // Mutate pressed state
-                let state = Input.mPressedStatePoolKeys.get(keyName);
-                if (state === undefined) {
-                    state = {
-                        pressed: false,
-                        pressedTimestamp: 0,
-                        control: false,
-                        shift: false,
-                        alt: false,
-                    };
-                    Input.mPressedStatePoolKeys.set(keyName, state);
+        if (typeof window !== "undefined")
+        {
+            window.addEventListener("keydown", evt => {
+                const keyName = navigatorKeyToThis(evt.key);
+                if (keyName !== undefined) {
+                    // Mutate pressed state
+                    let state = Input.mPressedStatePoolKeys.get(keyName);
+                    if (state === undefined) {
+                        state = {
+                            pressed: false,
+                            pressedTimestamp: 0,
+                            control: false,
+                            shift: false,
+                            alt: false,
+                        };
+                        Input.mPressedStatePoolKeys.set(keyName, state);
+                    }
+                    state.pressed = true;
+                    state.pressedTimestamp = Date.now();
+                    state.control = evt.ctrlKey;
+                    state.shift = evt.shiftKey;
+                    state.alt = evt.altKey;
+
+                    // Dispatch pressed event
+                    const evt1 = new Event("inputPressed");
+                    const r = Input.input.dispatchEvent(evt1);
+                    if (evt1.defaultPrevented)
+                    {
+                        evt.preventDefault();
+                    }
+                    return r;
                 }
-                state.pressed = true;
-                state.pressedTimestamp = Date.now();
-                state.control = evt.ctrlKey;
-                state.shift = evt.shiftKey;
-                state.alt = evt.altKey;
+            });
 
-                // Dispatch pressed event
-                Input.input.dispatchEvent(new Event("inputPressed"));
-            }
-        });
+            window.addEventListener("keyup", evt => {
+                const keyName = navigatorKeyToThis(evt.key);
+                if (keyName !== undefined) {
+                    // Mutate pressed state
+                    let state = Input.mPressedStatePoolKeys.get(keyName);
+                    if (state === undefined) {
+                        state = {
+                            pressed: false,
+                            pressedTimestamp: 0,
+                            control: false,
+                            shift: false,
+                            alt: false,
+                        };
+                        Input.mPressedStatePoolKeys.set(keyName, state);
+                    }
+                    state.pressed = false;
+                    state.control = false;
+                    state.shift = false;
+                    state.alt = false;
 
-        window.addEventListener("keyup", evt => {
-            const keyName = navigatorKeyToThis(evt.key);
-            if (keyName !== undefined) {
-                // Mutate pressed state
-                let state = Input.mPressedStatePoolKeys.get(keyName);
-                if (state === undefined) {
-                    state = {
-                        pressed: false,
-                        pressedTimestamp: 0,
-                        control: false,
-                        shift: false,
-                        alt: false,
-                    };
-                    Input.mPressedStatePoolKeys.set(keyName, state);
+                    // Dispatch released event
+                    const evt1 = new Event("inputReleased");
+                    const r = Input.input.dispatchEvent(evt1);
+                    if (evt1.defaultPrevented)
+                    {
+                        evt.preventDefault();
+                    }
+                    return r;
                 }
-                state.pressed = false;
-                state.control = false;
-                state.shift = false;
-                state.alt = false;
-
-                // Dispatch released event
-                Input.input.dispatchEvent(new Event("inputReleased"));
-            }
-        });
+            });
+        }
     }
 
     /**

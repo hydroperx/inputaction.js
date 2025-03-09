@@ -1,6 +1,6 @@
 {
   "name": "@hydroper/inputaction",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Input actions library.",
   "main": "src/index.ts",
   "repository": "https://github.com/hydroperfox/inputaction",

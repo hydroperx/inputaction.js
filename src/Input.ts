@@ -138,7 +138,7 @@ export default class Input extends (EventTarget as TypedEventTarget<{
                     state.alt = evt.altKey;
 
                     // Dispatch pressed event
-                    const evt1 = new Event("inputPressed");
+                    const evt1 = new Event("inputPressed", { cancelable: true });
                     const r = Input.input.dispatchEvent(evt1);
                     if (evt1.defaultPrevented)
                     {
@@ -169,7 +169,7 @@ export default class Input extends (EventTarget as TypedEventTarget<{
                     state.alt = false;
 
                     // Dispatch released event
-                    const evt1 = new Event("inputReleased");
+                    const evt1 = new Event("inputReleased", { cancelable: true });
                     const r = Input.input.dispatchEvent(evt1);
                     if (evt1.defaultPrevented)
                     {

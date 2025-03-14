@@ -1,6 +1,0 @@
-{
-  "name": "@hydroper/inputaction",
-  "version": "1.0.6",
-  "exports": "./src/index.ts",
-  "license": "Apache-2.0"
-}

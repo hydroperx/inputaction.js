@@ -55,6 +55,8 @@ const mapNavigatorKeyToThis = new Map<string, InputActionKeyName>([
     ["subtract", "minus"],
     ["add", "plus"],
     ["tab", "tab"],
+    ["+", "plus"],
+    ["-", "minus"],
     ["=", "assign"],
     [",", "comma"],
     [".", "dot"],

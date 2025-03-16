@@ -58,7 +58,7 @@ const mapNavigatorKeyToThis = new Map<string, InputActionKeyName>([
 
 export function navigatorKeyToThis(name: string): InputActionKeyName | undefined {
     name = name.toLowerCase();
-    if (/a-z0-9|f\d\d?/.test(name)) {
+    if (/^([a-z0-9]|f\d\d?)$/.test(name)) {
         return name as any;
     }
     return mapNavigatorKeyToThis.get(name);

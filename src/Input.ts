@@ -1,7 +1,7 @@
 import clonePlainObject from "./util/clonePlainObject";
 import { InputActionAtom, InputActionKey, InputActionKeyName, navigatorKeyToThis } from "./InputAction";
 import assert from "assert";
-import { TypedEventTarget } from "@hydroper/typedeventtarget";
+import { TypedEventTarget } from "com.hydroper.typedeventtarget";
 
 /**
  * The `Input` class handles action mapping and user input event listening.

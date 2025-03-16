@@ -1,6 +1,6 @@
 {
   "name": "com.hydroper.inputaction",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Input actions library.",
   "main": "src/index.ts",
   "repository": "https://github.com/realhydroper/tsinputaction",
@@ -9,7 +9,7 @@
   "keywords": ["input", "shortcut", "keyboard", "key combination"],
   "scripts": {},
   "dependencies": {
-    "com.hydroper.typedeventtarget": "^1.0.0",
+    "com.hydroper.typedeventtarget": "^1.0.1",
     "assert": "^2.1.0"
   },
   "devDependencies": {

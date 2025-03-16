@@ -37,6 +37,7 @@ export type InputActionKeyName =
     | "leftArrow" | "rightArrow" | "upArrow" | "downArrow"
     | "spacebar" | "enter" | "backspace"
     | "minus" | "plus" | "tab" | "escape"
+    | "assign" | "comma" | "dot" | "semicolon"
     | "f1" | "f2" | "f3" | "f4" | "f5" | "f6" | "f7" | "f8" | "f9" | "f10" | "f11" | "f12"
     | "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
     | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m"
@@ -54,6 +55,10 @@ const mapNavigatorKeyToThis = new Map<string, InputActionKeyName>([
     ["subtract", "minus"],
     ["add", "plus"],
     ["tab", "tab"],
+    ["=", "assign"],
+    [",", "comma"],
+    [".", "dot"],
+    [";", "semicolon"],
 ]);
 
 export function navigatorKeyToThis(name: string): InputActionKeyName | undefined {

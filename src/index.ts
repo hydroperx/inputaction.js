@@ -16,6 +16,7 @@ export function shortcutDisplayText(param: string | InputActionAtom[]): string {
     if (typeof param == "string") {
         return shortcutDisplayText(Input.input.getActions()[param]);
     }
+    if (!param) return "";
     for (const atom of param as InputActionAtom[]) {
         if (atom.hasOwnProperty("key")) {
             const key = atom as InputActionKey;

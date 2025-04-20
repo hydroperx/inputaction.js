@@ -1,7 +1,7 @@
 import clonePlainObject from "./util/clonePlainObject";
 import { InputActionAtom, InputActionKey, InputActionKeyName, navigatorKeyToThis } from "./InputAction";
 import assert from "assert";
-import { TypedEventTarget } from "com.hydroper.typedeventtarget";
+import { TypedEventTarget } from "@hydroper/event";
 
 /**
  * The `Input` class handles action mapping and user input event listening.
@@ -12,7 +12,7 @@ import { TypedEventTarget } from "com.hydroper.typedeventtarget";
  * for entity movement:
  * 
  * ```ts
- * import { Input } from "com.hydroper.webinputaction";
+ * import { Input } from "@hydroper/webinputaction";
  *
  * Input.input.setActions({
  *     "moveLeft": [

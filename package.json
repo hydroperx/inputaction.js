@@ -1,15 +1,15 @@
 {
-  "name": "com.hydroper.inputaction",
+  "name": "@hydroper/inputaction",
   "version": "1.0.5",
   "description": "Input actions library.",
   "main": "src/index.ts",
-  "repository": "https://github.com/realhydroper/tsinputaction",
+  "repository": "https://github.com/realhydroper/inputaction",
   "license": "Apache-2.0",
   "author": "Hydroper <HydroperFox@gmail.com>",
   "keywords": ["input", "shortcut", "keyboard", "key combination"],
   "scripts": {},
   "dependencies": {
-    "com.hydroper.typedeventtarget": "^1.0.1",
+    "@hydroper/event": "^1.0.1",
     "assert": "^2.1.0"
   },
   "devDependencies": {

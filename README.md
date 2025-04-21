@@ -13,7 +13,7 @@ Features:
 ## Getting started
 
 ```ts
-import { Input } from "@hydroper/inputaction";
+import { Input } from "@hydroperx/inputaction";
 
 Input.input.setActions({
     "moveLeft": [

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Input actions library.",
   "main": "src/index.ts",
-  "repository": "https://github.com/realhydroper/inputaction",
+  "repository": "https://github.com/hydroperx/inputaction",
   "license": "Apache-2.0",
   "author": "Hydroper <HydroperFox@gmail.com>",
   "keywords": ["input", "shortcut", "keyboard", "key combination"],

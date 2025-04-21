@@ -12,7 +12,7 @@ import { TypedEventTarget } from "@hydroper/event";
  * for entity movement:
  * 
  * ```ts
- * import { Input } from "@hydroper/webinputaction";
+ * import { Input } from "@hydroper/inputaction";
  *
  * Input.input.setActions({
  *     "moveLeft": [

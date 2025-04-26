@@ -1,13 +1,22 @@
 {
   "name": "@hydroperx/inputaction",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Input actions library.",
-  "main": "src/index.ts",
   "repository": "https://github.com/hydroperx/inputaction",
   "license": "Apache-2.0",
   "author": "Hydroper <HydroperFox@gmail.com>",
   "keywords": ["input", "shortcut", "keyboard", "key combination"],
-  "scripts": {},
+  "files": ["/dist"],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "exports": {
+    ".": {
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "dependencies": {
     "@hydroperx/event": "^1.0.0",
     "assert": "^2.1.0"

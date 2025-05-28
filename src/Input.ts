@@ -16,9 +16,9 @@ import { TypedEventTarget } from "@hydroperx/event";
  * for entity movement:
  *
  * ```ts
- * import { Input } from "@hydroperx/inputaction";
+ * import { input } from "@hydroperx/inputaction";
  *
- * Input.input.setActions({
+ * input.setActions({
  *     "moveLeft": [
  *         { key: "a" },
  *         { key: "leftArrow" },
@@ -37,8 +37,8 @@ import { TypedEventTarget } from "@hydroperx/event";
  *     ],
  * });
  *
- * Input.input.addEventListener("inputPressed", () => {
- *     const shouldMoveRight = Input.input.isPressed("moveRight");
+ * input.addEventListener("inputPressed", () => {
+ *     const shouldMoveRight = input.isPressed("moveRight");
  * });
  * ```
  *
@@ -327,3 +327,8 @@ type PressedState = {
   shift: boolean;
   alt: boolean;
 };
+
+/**
+ * The singleton instance of the `Input` class.
+ */
+export const input = Input.input;

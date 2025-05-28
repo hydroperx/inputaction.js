@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-      "target": "ES2024",
+      "target": "es2020",
       "moduleResolution": "bundler",
       "lib": ["es2017", "DOM", "ES2020.Intl"],
       "strict": true,

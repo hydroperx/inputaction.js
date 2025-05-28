@@ -13,9 +13,9 @@ Features:
 ## Getting started
 
 ```ts
-import { Input } from "@hydroperx/inputaction";
+import { input } from "@hydroperx/inputaction";
 
-Input.input.setActions({
+input.setActions({
     "moveLeft": [
         { key: "a" },
         { key: "leftArrow" },
@@ -34,8 +34,8 @@ Input.input.setActions({
     ],
 });
 
-Input.input.addEventListener("inputPressed", () => {
+input.on("inputPressed", () => {
     // use isPressed() or justPressed()
-    const shouldMoveRight = Input.input.justPressed("moveRight");
+    const shouldMoveRight = input.justPressed("moveRight");
 });
 ```

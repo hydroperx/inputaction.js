@@ -37,7 +37,7 @@ import { TypedEventTarget } from "@hydroperx/event";
  *     ],
  * });
  *
- * input.addEventListener("inputPressed", () => {
+ * input.on("inputPressed", () => {
  *     const shouldMoveRight = input.isPressed("moveRight");
  * });
  * ```
@@ -67,11 +67,7 @@ import { TypedEventTarget } from "@hydroperx/event";
  * actionsUpdated: Event;
  * ```
  */
-export default class Input extends (EventTarget as TypedEventTarget<{
-  inputPressed: Event;
-  inputReleased: Event;
-  actionsUpdated: Event;
-}>) {
+export default class Input extends (EventTarget as TypedEventTarget<InputEventMap>) {
   /**
    * The singleton instance of the `Input` class.
    */
@@ -84,7 +80,7 @@ export default class Input extends (EventTarget as TypedEventTarget<{
    */
   public static display(param: string | InputActionAtom[]): string {
     if (typeof param == "string") {
-      return Input.display(Input.input.getActions()[param]);
+      return Input.display(input.getActions()[param]);
     }
     if (!param) return "";
     for (const atom of param as InputActionAtom[]) {
@@ -215,7 +211,7 @@ export default class Input extends (EventTarget as TypedEventTarget<{
 
           // Dispatch pressed event
           const evt1 = new Event("inputPressed", { cancelable: true });
-          const r = Input.input.dispatchEvent(evt1);
+          const r = input.dispatchEvent(evt1);
           if (evt1.defaultPrevented) {
             evt.preventDefault();
           }
@@ -245,7 +241,7 @@ export default class Input extends (EventTarget as TypedEventTarget<{
 
           // Dispatch released event
           const evt1 = new Event("inputReleased", { cancelable: true });
-          const r = Input.input.dispatchEvent(evt1);
+          const r = input.dispatchEvent(evt1);
           if (evt1.defaultPrevented) {
             evt.preventDefault();
           }
@@ -318,7 +314,44 @@ export default class Input extends (EventTarget as TypedEventTarget<{
     }
     return false;
   }
+
+  /**
+   * Shortcut for the `addEventListener()` method.
+   */
+  public on<T extends keyof InputEventMap>(
+    type: T,
+    listener: (event: (InputEventMap[T] extends Event ? InputEventMap[T] : never)) => void,
+    options?: boolean | AddEventListenerOptions,
+  ): void;
+  public on(type: string, listener: Function, options?: boolean | AddEventListenerOptions): void;
+
+  public on(type: string, listener: Function, options?: boolean | AddEventListenerOptions) {
+    this.addEventListener(type as any, listener as any, options);
+  }
+
+  /**
+   * Shortcut for the `removeEventListener()` method.
+   */
+  public off<T extends keyof InputEventMap>(
+    type: T,
+    listener: (event: (InputEventMap[T] extends Event ? InputEventMap[T] : never)) => void,
+    options?: boolean | EventListenerOptions,
+  ): void;
+  public off(type: string, listener: Function, options?: boolean | EventListenerOptions): void;
+
+  public off(type: string, listener: Function, options?: boolean | EventListenerOptions) {
+    this.removeEventListener(type as any, listener as any, options);
+  }
 }
+
+/**
+ * Event types dispatched by `Input`.
+ */
+export type InputEventMap = {
+  inputPressed: Event;
+  inputReleased: Event;
+  actionsUpdated: Event;
+};
 
 type PressedState = {
   pressed: boolean;

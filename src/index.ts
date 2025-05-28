@@ -1,11 +1,11 @@
-import Input from "./Input";
+import Input, { input } from "./Input";
 import {
   InputActionAtom,
   InputActionKey,
   InputActionKeyName,
 } from "./InputAction";
 
-export { Input };
+export { Input, input };
 export type {
   InputActionAtom,
   InputActionKey,

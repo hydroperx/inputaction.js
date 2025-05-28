@@ -1,6 +1,6 @@
 {
   "name": "@hydroperx/inputaction",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Input actions library.",
   "repository": "https://github.com/hydroperx/inputaction.js",
   "license": "Apache-2.0",
